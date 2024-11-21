@@ -1,0 +1,225 @@
+.rowPaiPartida{
+    /* color: var(--text-color); */
+    color: white !important;
+    justify-content: center !important;
+}
+
+
+.rowPaiPartida .firstDecoration{
+    min-width: 0px; 
+    width: 0px; 
+    border-radius: 4px 0 0 4px; 
+    padding: 3px;
+}
+
+
+.textTipoPartida{
+    color: var(--victory-second-color);
+}
+.firstDecoration,
+.lastDecoration{
+    background-color: var(--victory-second-color); 
+}
+
+.textTipoPartida.derrota{
+    color: var(--defeat-second-color); 
+}
+.firstDecoration.derrota,
+.lastDecoration.derrota{
+    background-color: var(--defeat-second-color); 
+}
+
+.textTipoPartida.remake{
+    color: var(--remake-second-color); 
+}
+.firstDecoration.remake,
+.lastDecoration.remake{
+    background-color: var(--remake-second-color); 
+}
+
+.rowPaiPartida .divPaiDadoPartida,
+.divPaiDadoPartida .row,
+.rowPaiPartida .divPaiCampeaoPartida,
+.divPaiCampeaoPartida .divCampeaoPartida,
+.divPaiCampeaoPartida .divPaiItensPartida,
+.rowPaiPartida .divPaiStatisticasPartida,
+.rowPaiPartida .divPaiJogadoresPartida,
+.divCampeaoPartida .divPaiSpellRunaPartida,
+.divPaiSpellRunaPartida .divSpellPartida,
+.divPaiSpellRunaPartida .divRunaPartida,
+.divCampeaoPartida .divPaiKdaPartida{
+    background-color: var(--victory-first-color) !important;
+}
+
+.divPaiDadoPartida.derrota,
+.divPaiDadoPartida .row.derrota,
+.divPaiCampeaoPartida.derrota,
+.divCampeaoPartida.derrota,
+.divPaiItensPartida.derrota,
+.divPaiStatisticasPartida.derrota,
+.divPaiJogadoresPartida.derrota,
+.divPaiSpellRunaPartida.derrota,
+.divSpellPartida.derrota,
+.divRunaPartida.derrota,
+.divPaiKdaPartida.derrota{
+    background-color: var(--defeat-first-color) !important;
+}
+
+.divPaiDadoPartida.remake,
+.divPaiDadoPartida .row.remake,
+.divPaiCampeaoPartida.remake,
+.divCampeaoPartida.remake,
+.divPaiItensPartida.remake,
+.divPaiStatisticasPartida.remake,
+.divPaiJogadoresPartida.remake,
+.divPaiSpellRunaPartida.remake,
+.divSpellPartida.remake,
+.divRunaPartida.remake,
+.divPaiKdaPartida.remake{
+    background-color: var(--remake-first-color) !important;
+}
+
+
+
+.divPaiDadoPartida .textTipoPartida{
+    font-weight: bold; 
+    font-size: 18px;
+}
+
+.divCampeaoPartida .divImgCampeaoPartida{
+    position: relative;
+}
+
+.divImgCampeaoPartida .textoLvlPartida{
+    position: absolute; 
+    color: white; 
+    bottom: 0px; 
+    display: flex; 
+    width: 30px; 
+    height: 30px; 
+    left: 70px; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 14px; 
+    font-weight: 400; 
+    background: rgb(32, 45, 55); 
+    border-radius: 50%;
+}
+
+.divImgCampeaoPartida .imgCampeaoPartidaJogado{
+    border-radius: 50%;
+}
+
+.divCampeaoPartida .divPaiSpellRunaPartida{
+    padding: 0px 0px 0px 12px !important
+}
+
+.divPaiSpellRunaPartida .divSpellPartida,
+.divPaiSpellRunaPartida .divRunaPartida{
+    justify-content: left;
+    gap: 10px;
+}
+
+.divSpellPartida .imgSpellPartida,
+.divRunaPartida .imgRunaPartida{
+    width: 40px;  
+    padding: 0; 
+    margin: 0; 
+    border-radius: 50%;
+}
+
+.divCampeaoPartida .divPaiKdaPartida{
+    text-align: center;
+}
+
+.divPaiKdaPartida .textoKdaPartida2{
+    font-size: 11px;
+}
+
+.divPaiItensPartida{
+    align-items: center;
+    justify-content: start;
+    display: flex;
+    gap: 5px;
+}
+
+.divPaiItensPartida .imgItensPartida{
+    width: 35px;
+}
+
+.divPaiItensPartida  .imgPlaceholder {
+    width: 35px;
+    height: 35px;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.divPaiStatisticasPartida .divStatisticasPartida{
+    border-left: 1px solid var(--bg-color); 
+    padding: 10px;
+}
+
+
+.rowPaiPartida .lastDecoration{
+    min-width: 0px; 
+    width: 0px; 
+    border-radius: 0px 20px 20px 0px; 
+    padding: 9px;
+}
+
+
+
+
+
+.divPaiJogadoresPartida {
+    font-size: 12px;
+}
+
+
+
+.teste:hover .rowPaiPartida{
+    transform: translateY(-5px);
+}
+
+
+/* meuTooltip */
+
+.meuTooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.meuTooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: #000;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 15px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Estilo para a seta */
+.meuTooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 11%;
+    margin-left: 0px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+}
+
+.meuTooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* meuTooltip */

@@ -1,0 +1,355 @@
+ <!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="invocador.css">
+    <link rel="stylesheet" href="historico.css">
+    <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
+
+    <title>LolPedia - Invocador</title>
+</head>
+<body class="">
+
+    <!-- INICIO NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="bars">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <img src="imgs/logo.png" alt="logo" class="logo"> 
+            <div style="margin-left: 10px;"> LOLPedia</div>
+        </div>
+        <div class="navbar-content">
+            <div class="dark-mode">
+                <i id="iconDarkMode" class="fa-solid fa-moon"></i>
+            </div>
+        </div>
+    </nav>
+    <!-- FIM NAVBAR -->
+    <div class="content">
+        <!-- INICIO SIDEBAR -->
+            <div class="sidebar">
+                <a href="https://lolpedia.wuaze.com/" class="sidebar-nav">
+                    <i class="fa-solid fa-dragon icon"></i>
+                    <span>Campeões</span>
+                </a>
+                <a href="invocador.html" class="sidebar-nav active">
+                    <i class="fa-solid fa-users-between-lines icon"></i>
+                    <span>invocadores</span>
+                </a>
+            </div>
+        <!-- FIM SIDEBAR -->
+
+
+
+
+
+        <div class="wrapper">
+            <div class="row justify-content-start">
+                <div class="col-3 input-group mt-2 mb-4" style="width: 25%;">
+                    <input nomeCampo="Nome do invocador" type="text" class="form-control" placeholder="Nome do invocador" id="input_nome">
+                    <span class="input-group-text">#</span>
+                    <input nomeCampo="Tag do invocador" type="text" class="form-control" placeholder="BR1" id="input_tag" maxlength="8">
+                </div>
+                <div class="col-3 mt-2">
+                    <button class="btn btn-primary" onclick="buscarDadosRanked()">Procurar</button>
+                </div>
+                
+                
+                
+               <!--  <div>
+                    <button onclick="pegarPartidaOnline()">Procurar partida</button>
+            
+                    <table id="tabela" style="width:100%; text-align: center; text-wrap: nowrap;">
+                        <tr id="tabela_titulo">
+                        
+                        </tr>
+                        <tr id="tabela_dado">
+                        
+                        </tr>
+                    </table>
+                </div> -->
+                <div id="msg"></div>
+            </div>
+            <div id="rowInvocador" class="row d-none"> 
+                <div class="row col-5">
+                    <div class="row justify-content-center divPai_img_invocador">
+                        <div class="col-5 div_img_invocador">
+                            <div class="div_lvl_invocador">
+                                <span class="spanInvocadorLvl" id="spanInvocadorLvl"></span>
+                            </div>
+                            <img id="imgInvocador" src="" alt="img" >
+                        </div>
+                        <div class="col-7 nomeInvocador" id="nomeInvocador"></div>
+                        <div style="margin-top: -40px;" >
+                            <div id="textBarraDeContagem" class="text-secondary mb-1" style="text-align: center;"></div>
+                            <div class="divPaiBarraDeContagem" style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+                                <div>
+                                    <div class="progress">
+                                        <div id="progressBarTop" class="progress-bar bg-success" role="progressbar"></div>
+                                    </div>
+                                    <img class="mt-1" src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-top.png" alt="" width="30px">
+                                </div>
+                                <div>
+                                    <div class="progress">
+                                        <div id="progressBarJg" class="progress-bar bg-success" role="progressbar"></div>
+                                    </div>
+                                    <img class="mt-1" src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-jungle.png" alt="" width="30px">
+                                </div>
+                                <div>
+                                    <div class="progress">
+                                        <div id="progressBarMid" class="progress-bar bg-success" role="progressbar"></div>
+                                    </div>
+                                    <img class="mt-1" src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-middle.png" alt="" width="30px">
+                                </div>
+                                <div>
+                                    <div class="progress">
+                                        <div id="progressBarAdc" class="progress-bar bg-success" role="progressbar"></div>
+                                    </div>
+                                    <img class="mt-1" src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-bottom.png" alt="" width="30px">
+                                </div>
+                                <div>
+                                    <div class="progress">
+                                        <div id="progressBarSup" class="progress-bar bg-success" role="progressbar"></div>
+                                    </div>
+                                    <img class="mt-1" src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-utility.png" alt="" width="30px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-3 rowPaiRankedSolo">
+                    <div class="row p-0 m-1">
+                        <div class="col-12 divRankedSolo">
+                            <span>Ranqueada Solo</span>
+                            <hr style="color: var(--bg-color); border: 2px solid;">
+                        </div>
+                        <div class="col-5 mb-2">
+                            <img id="imgRankedSolo" src="imgs/emblemas/Rank=Bronze.png" alt="">
+                        </div>
+                        <div class="col-7 divTextRankedSolo">
+                            <div class="row">
+                                <span id="textRankedSolo" class="col-8 p-0"></span>
+                                <span id="textRankedSoloWinLose" class="col-4 p-0"></span>
+                                <span id="textRankedSoloPdl" class="col-6"></span>
+                                <span id="textRankedSoloWinrate" class="col-6 p-0"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row col-3 rowPaiRankedFlex">
+                    <div class="row">
+                        <div class="col-12 divRankedFlex">
+                            <span>Ranqueada Flexível</span>
+                            <hr style="color: var(--bg-color); border: 2px solid;">
+                        </div>
+                        <div class="col-5 mb-2">
+                            <img id="imgRankedFlex" src="imgs/emblemas/Rank=Bronze.png" alt="">
+                        </div>
+                        <div class="col-7 divTextRankedFlex">
+                            <div class="row">
+                                <span id="textRankedFlex" class="col-8 p-0"></span>
+                                <span id="textRankedFlexWinLose" class="col-4 p-0"></span>
+                                <span id="textRankedFlexPdl" class="col-6"></span>
+                                <span id="textRankedFlexWinrate" class="col-6 p-0"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            
+                <div id="rowHistorico" class="row"> 
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" id="historicoTodasPartidas-tab" data-bs-toggle="tab" data-bs-target="#historicoTodasPartidas" type="button">Todos</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="historicoRankedSolo-tab" data-bs-toggle="tab" data-bs-target="#historicoRankedSolo" type="button">Ranqueada Solo/Duo</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="historicoRankedFlex-tab" data-bs-toggle="tab" data-bs-target="#historicoRankedFlex" type="button">Ranqueada Flex</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" disabled>Modo de Jogo</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div id="loading" style="display: none; justify-content: center;" class="row">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show active" id="historicoTodasPartidas">
+                        <!-- <div class="row rowPaiPartida">
+                            <div class="col-1 firstDecoration"></div>
+                            <div class="col-2 p-0 divPaiDadoPartida">
+                                <div class="row">
+                                    <div class="col-12 textTipoPartida">Flex 5:5 Rank</div>
+                                    <div class="col-12 textDataPartida">há 20 horas</div>
+                                    <hr class="col-4" style="margin: 1rem 0px">
+                                    <div class="col-12 textStatusPartida">Vitória</div>
+                                    <div class="col-12 textTempoPartida">21:33</div>
+                                </div>
+                            </div>
+                            <div class="col-3 divPaiCampeaoPartida">
+                                <div class="row divCampeaoPartida">
+                                    <div class="col-4">
+                                        <div class="divImgCampeaoPartida">
+                                            <span class="textoLvlPartida">18</span>
+                                            <img class="imgCampeaoPartidaJogado" src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/champion/Kaisa.png" alt="campeaoJogado">
+                                        </div>
+                                    </div>
+                                    <div class="col-5 divPaiSpellRunaPartida">
+                                        <div class="row divSpellPartida">
+                                            <img class="imgSpellPartida" src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/spell/SummonerFlash.png" alt="">
+                                            <img class="imgSpellPartida" src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/spell/SummonerBarrier.png" alt="">
+                                        </div>
+                                        <div class="row divRunaPartida">
+                                            <img class="imgRunaPartida" src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png" alt="">
+                                            <img class="imgRunaPartida" src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7202_Sorcery.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="row p-0 m-0 divPaiKdaPartida">
+                                            <div class="col-12 textoKdaPartida">4/7/16</div>
+                                            <div class="col-12 p-0 textoKdaPartida2">2.86:1 KDA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-0 divPaiItensPartida">
+                                    <div class="col-12">
+                                        <img class="imgItensPartida" src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/item/3871.png" alt="">
+                                        <img class="imgItensPartida" src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/item/3504.png" alt="">
+                                        <img class="imgItensPartida" src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/item/2065.png" alt="">
+                                        <img class="imgItensPartida" src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/item/6616.png" alt="">
+                                        <img class="imgItensPartida" src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/item/3158.png" alt="">
+                                        <img class="imgItensPartida" src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/item/3222.png" alt="">
+                                        <img class="imgItensPartida" src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/item/3364.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2 divPaiStatisticasPartida">
+                                <div class="divStatisticasPartida">
+                                    <div>p/Kill 50%</div>
+                                    <div>Sentilenas de controle: 5</div>
+                                    <div>Tropas 271(7.7)</div>
+                                    <div>Gold 1</div>
+                                </div>
+                            </div>
+                            <div class="col-3 divPaiJogadoresPartida">
+                                <div class="row p-0 m-1" style="background-color: #28344E;">
+                                    <div class="col-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> 
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/champion/Kaisa.png" alt="campeaoJogado" style="width: 30px; padding: 0; margin: 0;">
+                                        <span>thiago2123aaaaaaaaaaaaaaaaaaaaaaa</span>
+                                    </div>
+                                    <div class="col-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> 
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/champion/Kaisa.png" alt="campeaoJogado" style="width: 30px; padding: 0; margin: 0;">
+                                        <span>thiago2123bbbbbbbbbbbbbbbbbbbbbbb</span>
+                                    </div>
+                                </div>
+                                <div class="row p-0 m-1" style="background-color: #28344E;">
+                                    <div class="col-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> 
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/champion/Kaisa.png" alt="campeaoJogado" style="width: 30px; padding: 0; margin: 0;">
+                                        <span>thiago2123</span>
+                                    </div>
+                                    <div class="col-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> 
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/champion/Kaisa.png" alt="campeaoJogado" style="width: 30px; padding: 0; margin: 0;">
+                                        <span>thiago2123</span>
+                                    </div>
+                                </div>
+                                <div class="row p-0 m-1" style="background-color: #28344E;">
+                                    <div class="col-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> 
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/champion/Kaisa.png" alt="campeaoJogado" style="width: 30px; padding: 0; margin: 0;">
+                                        <span>thiago2123</span>
+                                    </div>
+                                    <div class="col-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> 
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/champion/Kaisa.png" alt="campeaoJogado" style="width: 30px; padding: 0; margin: 0;">
+                                        <span>thiago2123</span>
+                                    </div>
+
+                                </div>
+                                <div class="row p-0 m-1" style="background-color: #28344E;">
+                                    <div class="col-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> 
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/champion/Kaisa.png" alt="campeaoJogado" style="width: 30px; padding: 0; margin: 0;">
+                                        <span>thiago2123</span>
+                                    </div>
+                                    <div class="col-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> 
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/champion/Kaisa.png" alt="campeaoJogado" style="width: 30px; padding: 0; margin: 0;">
+                                        <span>thiago2123</span>
+                                    </div>
+
+                                </div>
+                                <div class="row p-0 m-1" style="background-color: #28344E;">
+                                    <div class="col-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> 
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/champion/Kaisa.png" alt="campeaoJogado" style="width: 30px; padding: 0; margin: 0;">
+                                        <span>thiago2123</span>
+                                    </div>
+                                    <div class="col-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> 
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.4.1/img/champion/Kaisa.png" alt="campeaoJogado" style="width: 30px; padding: 0; margin: 0;">
+                                        <span>thiago2123</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1 lastDecoration"></div>
+                        </div> -->
+                    </div>
+                    <div class="tab-pane fade" id="historicoRankedSolo"></div>
+                    <div class="tab-pane fade" id="historicoRankedFlex"></div>
+                    <div class="tab-pane fade" id="disabled-tab-pane"></div>
+                </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <!-- INICIO FOOTER  -->
+    <footer>
+        <span>Ceated BY <a href="https://github.com/Thiago2123">Thiago Meneghetti</a></span>
+        <!-- <div class="logo">
+            <a href="#top"><i class="devicon-codeigniter-plain"></i>Thiago Meneghetti</a>
+        </div> -->
+        <div class="footer-nav">
+            <div><a href="#top"><img src="imgs/logo.png" alt="logo" width="100px"></a></div>
+            
+        </div>
+        <div class="avatar-icons">
+            <a href="https://github.com/Thiago2123" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/thiago-meneghetti-3513b0168/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:thi_meneghetti@hotmail.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://wa.me/5511988670121" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <span id="diretosreservados">©<a href="#top">LolPedia</a> Todos os direitos reservados.</span>
+    </footer>
+    <!-- FIM FOOTER  -->
+
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/function.js"></script>
+        <script src="js/invocador.js"></script>
+        <script src="js/historico.js"></script>
+
+
+</body>
+</html>
+
+<style>
+    table, th, td {
+        border:1px solid black;
+    }
+
+
+    
+</style>

@@ -1,0 +1,399 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Ubuntu", sans-serif;
+}
+
+:root{
+    --site-color: #3a7afe;
+    --mmain-color: #ebeef6;
+    --active-color: #d4def7;
+    --bg-color: #ecedf0;
+    --second-color: #f1f1f1fd;
+    --third-color: #9fa7bd;
+    --fourth-color: #fff;
+    --main-bg-color: #1e2746;
+    --second-bg-color: #2d3b6b;
+    --third-bg-color: #3a7afe;
+    --four-bg-color: #131b38;
+    --primary-color: #0088cc;
+    --success-color: #47a447;
+    --info-color: #5bc0de;
+    --warning-color: #ed9c28;
+    --danger-color: #d2322d;
+
+    --text-color: #212529;
+
+    --victory-first-color: #28344E;
+    --victory-second-color: #5383E8;
+    --defeat-first-color: #59343B;
+    --defeat-second-color: #E84057;
+    --remake-first-color: #282830;
+    --remake-second-color: #515163;
+
+    --purple-color: #6610f2;
+    --orange-color: #d96411;
+}
+
+body{
+    background-color: var(--mmain-color);
+}
+
+/* INICIO NAVBAR */
+
+.navbar{
+    color: var(--mmain-color);
+    background-color: var(--four-bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 12);
+    padding: 5px 15px;
+    font-size: 17px;
+    top: 0;
+    z-index: 1;
+}
+
+.navbar .navbar-content{
+    display: flex;
+    align-items: center;
+
+}
+
+.navbar .navbar-content .dark-mode i{
+    font-size: 30px;
+    cursor: pointer;
+    color: #bd009d;
+}
+
+
+.navbar .bars,
+.notification{
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.logo{
+    width: 40px;
+}
+
+.notification,
+.avatar{
+    cursor: pointer;
+    position: relative;
+}
+
+.notification .notification-number{
+    position: absolute;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: var(--site-color);
+    width: 20px;
+    color: var(--second-color);
+    height: 20px;
+    border-radius: 50%;
+    right: -10px;
+    top: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* INICIO DROPDOWN NAVBAR */
+.dropdown-menu{
+    position: absolute;
+    right: 0;
+    top: 100%;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    background-color: var(--main-bg-color);
+    width: 280px;
+    border-radius: 7px;
+    display: none;
+}
+
+.dropdown-content{
+    max-width: 400px;
+    overflow-y: auto;
+}
+
+.dropdown-menu li,
+.dropdown-menu .item{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom:  1px solid var(--second-bg-color);
+    font-size: 15px;
+
+}
+
+.dropdown-menu li img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.dropdown-menu li .text{
+    font-style: italic;
+    margin-left: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dropdown-menu li:hover,
+.dropdown-menu .item:hover{
+    background-color: var(--second-bg-color);
+}
+
+/* PASSAR O MOUSE E MOSTRAR A MSG DA NOTIFICAÇÃO */
+/* .dropdown-menu li:hover .text{
+    white-space: pre-wrap;
+} */
+
+
+.dropdown-menu .item span{
+    margin-right: 15px;
+}
+
+.dropdown-menu.setting{
+    width: 150px;
+}
+
+.dropdown-menu.active{
+    display: block;
+}
+
+
+
+/* FIM DROPDOWN NAVBAR */
+
+/* FIM NAVBAR */
+
+/* INICIO CONTEUDO */
+
+.content{
+    display: flex;
+}
+
+/* INICIO sidebar */
+.content .sidebar{
+    color: var(--mmain-color);
+    height: calc(100vh - 45px);
+    width: 60px;
+    /* width: 250px; */
+    position: sticky;
+    top: 45px;
+    background-color: var(--main-bg-color);
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.12);
+    overflow: auto;
+    overflow-x: hidden;
+    flex-shrink: 0;
+    transition: 0.4s all ease;
+}
+
+@media(max-width: 768px){
+    .content .sidebar{
+        width: 60px;
+        position: fixed;
+        z-index: 1;
+        width: 0;
+    }
+}
+
+.content .sidebar:hover,
+.content .sidebar.active{
+    width: 250px;
+}
+
+.sidebar .sidebar-nav{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s background ease;
+    font-size: 16px;
+}
+
+.sidebar a{
+    color: var(--mmain-color);
+}
+
+.sidebar a:hover{
+    background-color: var(--second-bg-color);
+    color: var(--active-color);
+}
+
+.sidebar .sidebar-nav.active{
+    background-color: var(--second-bg-color);
+    color: var(--active-color);
+}
+
+.sidebar .sidebar-nav.active::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background-color: var(--site-color);
+}
+
+.sidebar-nav .icon{
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+/* FIM sidebar */
+
+.content .wrapper{
+    width: 100%;
+    padding: 10px;
+    background-color: var(--bg-color);
+}
+
+.content .row{
+    background-color: var(--fourth-color);
+    border-radius: 6px;
+    margin: 10px;
+}
+
+.wrapper .row{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    flex-wrap: wrap;
+}
+
+.box-img img{
+    padding: 4px;
+    cursor: pointer;
+    opacity: 0.80;
+    transition: all 0.4s ease;
+
+}
+
+.box-img img:hover{
+    transform: scale(1.15);
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* INICIO RODAPE */
+
+footer{
+    background: var(--four-bg-color);
+    padding: 25px 23px;
+    color: var(--active-color);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 0 40px 10px var(--sombreado-section);
+}
+
+footer .footer-nav{
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+footer .avatar-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-top: 5px;
+}
+
+footer .avatar-icons i{
+    color: var(--second-color);
+    font-size: 25px;
+}
+
+footer .avatar-icons i:hover{
+    color: var(--site-color);
+}
+
+
+footer span a{
+    color: var(--active-color);
+}
+
+footer span a:hover{
+    color: var(--site-color);
+}
+
+/* FIM RODAPE */
+
+
+
+
+.text-bg-purple, .btn-purple{
+    background-color: var(--purple-color) !important;
+    color: white !important;
+}
+
+.btn-purple:hover{
+    background-color: #8038f5f5 !important;
+}
+
+.btn-orange{
+    background-color: var(--orange-color) !important;
+    color: white;
+}
+
+.btn-orange:hover{
+    background-color: #d9641194 !important;
+    color: white;
+}
+
+
+
+
+
+
+::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: var(--four-bg-color);
+    border-radius: 7px;
+}
+::-webkit-scrollbar{
+    width: 7px;
+    background-color: var(--four-bg-color);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--main-bg-color);
+    border-radius: 7px;
+}

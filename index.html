@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+        <link rel="stylesheet" href="custom.css">
+
+        <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
+        <title>LolPedia - Campeões</title>
+    </head>
+    <body>
+
+        <!-- INICIO NAVBAR -->
+        <nav class="navbar">
+            <div class="navbar-content">
+                <div class="bars">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <img src="imgs/logo.png" alt="logo" class="logo"> 
+                <div style="margin-left: 10px;"> LOLPedia</div>
+            </div>
+            <div class="navbar-content">
+                <div class="dark-mode">
+                    <i id="iconDarkMode" class="fa-solid fa-moon"></i>
+                </div>
+            </div>
+        </nav>
+        <!-- FIM NAVBAR -->
+
+        <!-- INICIO CONTEUDO -->
+        <div class="content">
+            <!-- INICIO SIDEBAR -->
+            <div class="sidebar">
+                <a href="index.html" class="sidebar-nav active">
+                    <i class="fa-solid fa-dragon icon"></i>
+                    <span>Campeões</span>
+                </a>
+                <a href="invocador.html" class="sidebar-nav">
+                    <i class="fa-solid fa-users-between-lines icon"></i>
+                    <span>invocadores</span>
+                </a>
+                <a href="#" class="sidebar-nav" id="mostrarCampeaoFree">
+                    <i class="far fa-square icon"></i>
+                    <span>Mostrar Apenas Campeões Free</span>
+                </a>
+            </div>
+            <!-- FIM SIDEBAR -->
+            <div class="wrapper ">
+                <div class="row ">
+                    <div class="input-group col-3" style="width: 20%; margin-left: 10px;">
+                        <input id="inputPesquisarCampeao" type="text" class="form-control" placeholder="Procurar Campeão">
+                        <button class="btn btn-outline-success fa-solid fa-magnifying-glass"  type="button"></button>
+                    </div>
+                    <div class="col-9">
+                        <button type="button" onclick="pesquisarCampeaoPorFuncao('')" class="col0-2 btn btn-orange">Todos</button>
+                        <button type="button" onclick="pesquisarCampeaoPorFuncao('Tank')" class="col0-2 btn btn-success">Tanque</button>
+                        <button type="button" onclick="pesquisarCampeaoPorFuncao('Fighter')" class="col0-2 btn btn-primary">Lutador</button>
+                        <button type="button" onclick="pesquisarCampeaoPorFuncao('Marksman')" class="col0-2 btn btn-warning">Atirador</button>
+                        <button type="button" onclick="pesquisarCampeaoPorFuncao('Mage')" class="col0-2 btn btn-purple">Mago</button>
+                        <button type="button" onclick="pesquisarCampeaoPorFuncao('Assassin')" class="col0-2 btn btn-danger">Assassino</button>
+                        <button type="button" onclick="pesquisarCampeaoPorFuncao('Support')" class="col0-2 btn btn-info">Suporte</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="box-img" id="box-img"> </div>
+                    <div id="versaoLol" style="text-align: end; font-weight: 800; color: grey;"></div>
+                
+                    <!-- Modal CHAMPION-->
+                    <div class="modal fade modal-dark" id="modalChampion" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="tituloModalChampion"></h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div id="bodyModalChampion" class="modal-body" style="display: flex; gap: 20px;">
+                                    <img id="imgModalChampion" class="img-fluid" src="" alt="imgChampion" width="500px" height="500px">
+                                    <div>
+                                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link active" id="pills-lore-tab" data-bs-toggle="pill" data-bs-target="#pills-lore" type="button" role="tab" aria-controls="pills-lore" aria-selected="true">Lore</button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" id="pills-skins-tab" data-bs-toggle="pill" data-bs-target="#pills-skins" type="button" role="tab" aria-controls="pills-skins" aria-selected="false">Skins</button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" id="pills-habilidade-tab" data-bs-toggle="pill" data-bs-target="#pills-habilidade" type="button" role="tab" aria-controls="pills-habilidade" aria-selected="false">Habilidades</button>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="pills-tabContent">
+                                                <div class="tab-pane fade show active" id="pills-lore" role="tabpanel" aria-labelledby="pills-lore-tab" tabindex="0">
+                                                    <h2 id="subTitleModalChampion" class="subTitleModalChampion"></h2>
+                                                    <div id="divModalTag" class="divModalTag"></div>
+
+                                                    <div id="loreModalChampion" class="loreModalChampion"></div>
+                
+                                                </div>
+                                                <div class="tab-pane fade" id="pills-skins" role="tabpanel" aria-labelledby="pills-skins-tab" tabindex="0">
+                                                    <h2>Skins</h2>
+                                                    <div id="divSkinsModalChampion" class="divSkinsModalChampion">
+                                                        <section>
+                                                            <div class="swiper-container">
+                                                                <div id="swiper-wrapper" class="swiper-wrapper">
+                                                                    <!-- Slides -->
+                                                                    <!-- <div id="swiper-slide" class="swiper-slide">
+                                                                        <div class="testimonialBox">
+                                                                            <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg" alt="">
+                                                                            <div id="content" class="content">
+                                                                                <div>Aatrox Clássico</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> -->
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="pills-habilidade" role="tabpanel" aria-labelledby="pills-habilidade-tab" tabindex="0">
+                                                    <div><h2>Habilidades</h2></div>
+                                                    <!-- <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error necessitatibus quasi omnis possimus aut corporis odit? Saepe porro, numquam natus error molestias ipsa facere voluptatibus sequi veniam, maiores quibusdam illo.</div> -->
+                                                    <div id="divSkills" class="divSkills"></div>
+                                                        
+                                                    <div id="divTextSkills" class="divTextSkills"> 
+                                                        <div id="nameSpell" class="nameSpell"></div>
+                                                        <div id="textSpell" class="textSpell"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- FIM CONTEUDO -->
+
+        <!-- INICIO FOOTER  -->
+        <footer>
+            <span>Ceated BY <a href="https://github.com/Thiago2123">Thiago Meneghetti</a></span>
+            <!-- <div class="logo">
+                <a href="#top"><i class="devicon-codeigniter-plain"></i>Thiago Meneghetti</a>
+            </div> -->
+            <div class="footer-nav">
+                <div><a href="#top"><img src="imgs/logo.png" alt="logo" width="100px"></a></div>
+                
+            </div>
+            <div class="avatar-icons">
+                <a href="https://github.com/Thiago2123" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/thiago-meneghetti-3513b0168/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:thi_meneghetti@hotmail.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://wa.me/5511988670121" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <span id="diretosreservados">©<a href="#top">Lolpedia</a> Todos os direitos reservados.</span>
+        </footer>
+        <!-- FIM FOOTER  -->
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+        <script type="module" src="js/swiper-setup.js"></script>
+        <script src="js/function.js"></script>
+        <script src="js/custom.js"></script>
+
+
+
+    </body>
+</html>
+
+<style>
+    table, th, td {
+        border:1px solid black;
+    }
+
+    .modal-dark .modal-content {
+      background-color: #333;
+      color: #fff;
+    }
+    
+
+    .modal-xl{
+        --bs-modal-width: 1600px;
+    }
+
+    .loreModalChampion{
+        padding: 10px;
+    }
+
+    .subTitleModalChampion{
+        font-size: 30px;
+        font-weight: 900;
+        font-family: 'Ubuntu';
+        padding-left: 10px;
+
+    }
+    .row{
+        --bs-gutter-x: 0rem;
+        --bs-gutter-y: 0px;
+    }
+
+    #imgModalChampion{
+        /* height: auto; */
+        height: 695px;
+        width: 61.3%;
+        /* object-fit: cover; */
+        border-radius: 20px;
+    }
+
+    .divModalTag{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        padding-right: 10px;
+    }
+
+    /* INICIO SLIDER */
+
+    section{
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        /* align-items: center; */
+        /* background: #2196f3; */
+        overflow: hidden;
+        height: 609px;
+
+    }
+
+    .swiper-container{
+        width: 585px;
+        height: 130%;    
+    }
+
+    
+    .swiper-container .swiper-slide{
+        background-position: center;
+        background-size: cover;
+        width: 138px;
+        /* padding-left: 150px; */
+        /* box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2); */
+        filter: blur(4px);
+        border-radius: 20px;
+
+    }
+   .swiper-slide-active{
+        filter: blur(0px) !important;
+    }
+
+
+    .testimonialBox{
+        position: relative;
+        width: 308px;
+        color: white;
+    /* background-color: red;*/
+
+    }
+
+    .testimonialBox img{
+        border-radius: 20px;
+        width: 308px;
+        height: 560px;
+    }
+
+    .testimonialBox .content{
+        font-size: 20px;
+        font-weight: 800;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+    }
+
+    .swiper-3d {
+        perspective: 800px;
+    }
+
+    .swiper-3d .swiper-slide-shadow-right,
+    .swiper-3d .swiper-slide-shadow-left{
+        background-image: none;
+    }
+
+    /* FIM SLIDER */
+    
+
+    .divSkills{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        min-width: 585px;
+    }
+
+    .divSkills .divSpell{
+        border: 2px solid #ffc10752;
+        box-shadow: 5px 5px 50px black;
+        opacity: 0.4;
+        transition: 0.4s all ease;
+        position: relative;
+    }
+
+    .divSkills .divSpell:hover{
+        opacity: 1;
+        transform: scale(1.15);
+        cursor: pointer;
+    }
+
+    .divSkills .divSpell.active{
+        opacity: 1;
+        transform: scale(1.15);
+        cursor: pointer;
+    }
+
+    .divSpell span{
+        position: absolute;
+        margin-left: 50px;
+        font-weight: 700;
+    }
+
+    .divTextSkills{
+        padding-top: 20px;
+    }
+
+    .divTextSkills .nameSpell{
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    .divTextSkills .textSpell,
+    .loreModalChampion{
+        text-align: justify;
+        text-shadow: 2px 3px 3px black;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+
+   
+</style>

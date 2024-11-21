@@ -1,0 +1,126 @@
+.rowInvocador .div_img_invocador{
+    position: relative;
+}
+
+.div_img_invocador .div_lvl_invocador{
+    position: absolute; 
+    color: white;
+    background-color: rgb(32, 45, 55); 
+    border-radius: 20px; 
+    height: 26px; 
+    margin: 120px 0 0 40px;
+}
+
+.div_lvl_invocador .spanInvocadorLvl{
+    display: inline-block; 
+    line-height: 20px; 
+    padding: 0px 8px; 
+    font-size: 12px; 
+    border-radius: 10px; 
+    color: rgb(255, 255, 255); 
+    background-color: rgb(32, 45, 55); 
+    font-family: Roboto, "sans-serif";
+}
+
+.div_img_invocador img{
+    border-radius: 20px;
+    width: 130px;
+    height: auto;
+}
+.nomeInvocador h3,
+.divRankedSolo span,
+.divRankedFlex span,
+#textRankedSolo, #textRankedSoloPdl,
+#textRankedFlex, #textRankedFlexPdl{
+    color: var(--text-color) !important;
+}
+
+.nomeInvocador span{
+    color: var(--bs-gray-500);
+    font-weight: normal;
+}
+
+
+
+.wrapper #rowInvocador{
+    background-color: var(--bg-color);
+}
+
+.divPai_img_invocador{
+    margin: 0 !important;
+}
+
+.rowPaiRankedSolo,
+.rowPaiRankedFlex{
+    padding: 0;
+}
+
+.rowPaiRankedSolo > .row,
+.rowPaiRankedFlex > .row{
+    margin: 0; 
+    padding: 0;
+}
+
+.rowPaiRankedSolo .divRankedSolo, 
+.rowPaiRankedFlex .divRankedFlex{
+    padding: 1rem 0 0 0; 
+    text-align: center;
+}
+
+.divRankedSolo span,
+.divRankedFlex span{
+    font-size: 20px; 
+    font-weight: 500;
+}
+
+.rowPaiRankedSolo #imgRankedSolo,
+.rowPaiRankedFlex #imgRankedFlex{
+    width: 140px; 
+    height: auto; 
+    border-radius: 50%; 
+    background-color: var(--bg-color);
+}
+
+
+.divTextRankedSolo #textRankedSoloWinLose, .divTextRankedSolo #textRankedSoloWinrate,
+.divTextRankedFlex #textRankedFlexWinLose, .divTextRankedFlex #textRankedFlexWinrate{
+    font-size: 12px; 
+    text-align: right; 
+    color: #9AA4AF;
+}
+
+
+#textRankedSolo, 
+#textRankedFlex{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--gray900);
+    font-family: "Roboto",sans-serif;
+}
+
+.unranked{
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #C3CBD1 !important;
+}
+
+.divTextRankedSolo, .divTextRankedFlex{
+    padding: 0;
+}
+
+
+.progress {
+    height: 130px;    /* altura do progresso vertical */
+    border-radius: 10px;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column-reverse; /* para tornar o progresso de cima para baixo */
+  }
+
+  .progress-bar {
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
